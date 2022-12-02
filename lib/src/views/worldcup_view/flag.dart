@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 
 class Flags extends StatelessWidget {
-  const Flags({super.key});
+  final String flag;
 
+  const Flags({required this.flag, super.key});
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
+    return Container(
+      height: 50,
+      width: 50,
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: NetworkImage(
-                  "https://images.pexels.com/photos/301599/pexels-photo-301599.jpeg"))),
-    ));
+        // color: Colors.black,
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          fit: BoxFit.fill,
+          image: NetworkImage(
+            flag,
+          ),
+        ),
+      ),
+    );
   }
 }

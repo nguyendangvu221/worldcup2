@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Matches {
-  final String type;
   final String group;
+  final int homeScorers;
+  final int awayScorers;
   final DateTime localTime;
   final String timeElapsed;
   final bool finished;
@@ -12,8 +13,9 @@ class Matches {
   final String homeFlag;
   final String awayFlag;
   Matches(
-      this.type,
       this.group,
+      this.homeScorers,
+      this.awayScorers,
       this.localTime,
       this.timeElapsed,
       this.finished,
@@ -24,12 +26,11 @@ class Matches {
   factory Matches.fromJsonMatches(Map<String, dynamic> jsonMatches) {
     return Matches(
         // jsonMatches["id"] as String,
-        jsonMatches["type"] as String,
         jsonMatches["group"] as String,
         // jsonMatches["homeTeamId"] as int,
         // jsonMatches["awayTeamId"] as int,
-        // jsonMatches["homeScores"] as int,
-        // jsonMatches["awayScores"] as int,
+        jsonMatches["homeScorers"] as int,
+        jsonMatches["awayScorers"] as int,
         jsonMatches["localTime"] as DateTime,
         // jsonMatches["stadiumId"] as int,
         jsonMatches["timeElapsed"] as String,
@@ -40,22 +41,21 @@ class Matches {
         jsonMatches["homeFlag"] as String,
         jsonMatches["awayFlag"] as String);
   }
-  List<Map<String, dynamic>> convertFromJsonToListOfMatches(String jsonString) {
-    final jsonTeam = jsonDecode(jsonString);
-    return jsonTeam;
+  List<Matches> parseMatches(String jsonString) {
+    final parsed = json.decode(jsonString).cast<Map<String, dynamic>>(); 
+   return parsed.map<Matches>((json) =>Matches.fromJsonMatches(json)).toList(); 
   }
 
-  Future<List<Matches>> getTeamFromBackend() async {
-    List<Matches> listMatches = [];
+  Future<List<Matches>> fetchMatches() async {
     const url = "http://api.cup2022.ir/api/v1/Matches";
     final uri = Uri.parse(url);
     final response = await http.get(uri);
-    final jsonString = response.body;
-    final jsonMatches = convertFromJsonToListOfMatches(jsonString);
-    for (var i = 0; i < jsonMatches.length; i++) {
-      final matches = Matches.fromJsonMatches(jsonMatches[i]);
-      listMatches.add(matches);
+    if(response.statusCode == 200){
+    return parseMatches(response.body);
     }
-    return listMatches;
+    else{
+      throw Exception('Unable to fetch products from the REST API');
+    }
+
   }
 }

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:world_cup/main.dart';
-import 'package:world_cup/src/views/MyApp.dart';
+import 'package:world_cup/src/views/my_app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
