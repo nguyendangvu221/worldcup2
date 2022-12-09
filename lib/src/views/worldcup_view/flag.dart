@@ -13,7 +13,7 @@ class Flags extends StatelessWidget {
         // color: Colors.black,
         shape: BoxShape.circle,
         image: DecorationImage(
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           image: NetworkImage(
             flag,
           ),

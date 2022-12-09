@@ -6,8 +6,8 @@ class Match extends StatelessWidget {
   final DateTime dateTime;
   final String homeTeamEn;
   final String awayTeamEn;
-  final int homeScorers;
-  final int awayScorers;
+  final int homeScore;
+  final int awayScore;
   final String homeFlag;
   final String awayFlag;
   const Match(
@@ -16,30 +16,32 @@ class Match extends StatelessWidget {
       required this.dateTime,
       required this.homeTeamEn,
       required this.awayTeamEn,
-      required this.homeScorers,
-      required this.awayScorers,
+      required this.homeScore,
+      required this.awayScore,
       required this.homeFlag,
       required this.awayFlag});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
           children: [
-            Container(
-              margin: const EdgeInsets.only(left: 10),
-              child:  Text(
-                group,
-                style:const TextStyle(
-                  fontSize: 20,
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: Text(
+                  group,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 105),
-              child:  Text(
+            Expanded(
+              flex: 2,
+              child: Text(
                 dateTime.toString(),
                 style: const TextStyle(
                   fontSize: 20,
@@ -52,10 +54,10 @@ class Match extends StatelessWidget {
             margin: const EdgeInsets.only(top: 15, bottom: 15),
             child: Countries(
               awayFlag: awayFlag,
-              awayScorers: awayScorers,
+              awayScorers: awayScore,
               awayTeamEn: awayTeamEn,
               homeFlag: homeFlag,
-              homeScorers: homeScorers,
+              homeScorers: homeScore,
               homeTeamEn: homeTeamEn,
             )),
         const Divider(color: Color.fromARGB(255, 216, 216, 216), thickness: 2),
