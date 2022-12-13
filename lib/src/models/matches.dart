@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:world_cup/src/models/login.dart';
+import 'package:intl/intl.dart';
 
 class Matches {
   final String id;
@@ -12,6 +13,7 @@ class Matches {
   final int awayScore;
   final String homeScorers;
   final String awayScorers;
+  final formatDate = DateFormat('kk:mm dd/MM/yyyy');
   final DateTime localDate;
   final String timeElapsed;
   final String finished;
@@ -61,7 +63,7 @@ class Matches {
               .toString()
               .split(' ')[1]
               .split(':')[1])),
-
+      // localDate: DateTime(int.parse(jsonMatches['local_date'].toString())),
       timeElapsed: jsonMatches['time_elapsed'] as String,
       finished: jsonMatches['finished'] as String,
       matchday: jsonMatches['matchday'] as String,

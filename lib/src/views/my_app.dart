@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:world_cup/src/models/matches.dart';
+import 'package:world_cup/src/views/worldcup_view/appbar_match.dart';
+import 'package:world_cup/src/views/worldcup_view/drawer_match.dart';
 import 'package:world_cup/src/views/worldcup_view/match.dart';
 import 'package:world_cup/src/views/worldcup_view/worldcup_screen.dart';
 
@@ -13,8 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Test"),
+        drawer: const DrawerMatch(),
+        appBar: const PreferredSize(
+          preferredSize: Size.fromHeight(55),
+          child: AppBarMatch(),
         ),
         // body: WorldCupScreen(),
         body: FutureBuilder<List<Matches>>(

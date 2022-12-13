@@ -10,8 +10,10 @@ class Countries extends StatelessWidget {
   final int awayScorers;
   final String homeFlag;
   final String awayFlag;
+  final String finished;
   const Countries(
       {required this.homeTeamEn,
+      required this.finished,
       required this.awayTeamEn,
       required this.homeScorers,
       required this.awayScorers,
@@ -25,49 +27,92 @@ class Countries extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              child: homeFlag != null
-                  ? Flags(flag: homeFlag)
-                  : const CircularProgressIndicator(),
-            ),
-          ),
-          homeFlag != null
-              ? Expanded(
-                  child: Text(
-                    homeTeamEn,
-                    style: const TextStyle(fontSize: 20, color: Colors.red),
-                  ),
-                )
-              : const CircularProgressIndicator(),
-          (homeScorers != null && awayScorers != null)
-              ? Expanded(
-                  child: Center(
-                    child: Text(
-                      "$homeScorers-$awayScorers",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+            flex: 3,
+            // child: Container(
+            child: homeFlag != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Flags(flag: homeFlag),
+                      Container(
+                        margin: const EdgeInsets.only(left: 15),
+                        child: Text(
+                          homeTeamEn,
+                          style:
+                              const TextStyle(fontSize: 17, color: Colors.red),
+                        ),
                       ),
-                    ),
-                  ),
-                )
+                    ],
+                  )
+                : const CircularProgressIndicator(),
+            // ),
+          ),
+          // homeFlag != null
+          //     ? Expanded(
+          //         child: Text(
+          //           homeTeamEn,
+          //           style: const TextStyle(fontSize: 17, color: Colors.red),
+          //         ),
+          //       )
+          //     : const CircularProgressIndicator(),
+          (homeScorers != null && awayScorers != null)
+              ? finished == "TRUE"
+                  ? Expanded(
+                      flex: 1,
+                      child: Center(
+                        child: Text(
+                          "$homeScorers-$awayScorers",
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    )
+                  : const Expanded(
+                      flex: 1,
+                      child: Center(
+                        child: Image(
+                            image: AssetImage(
+                              "asset/bell.png",
+                            ),
+                            width: 30),
+                        // style: TextStyle(
+                        //   fontSize: 17,
+                        //   fontWeight: FontWeight.bold,
+                        // ),
+                      ),
+                    )
               : const CircularProgressIndicator(),
           awayTeamEn != null
               ? Expanded(
-                  child: Text(
-                    awayTeamEn,
-                    style: const TextStyle(
-                        fontSize: 20, color: Color.fromARGB(255, 56, 162, 249)),
+                  flex: 3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(right: 15),
+                        child: Text(
+                          awayTeamEn,
+                          style: const TextStyle(
+                              fontSize: 17,
+                              color: Color.fromARGB(255, 56, 162, 249)),
+                        ),
+                      ),
+                      Flags(
+                        flag: awayFlag,
+                      ),
+                    ],
                   ),
                 )
               : const CircularProgressIndicator(),
-          awayFlag != null
-              ? Expanded(
-                  child: Flags(
-                    flag: awayFlag,
-                  ),
-                )
-              : const CircularProgressIndicator(),
+          // awayFlag != null
+          //     ? Expanded(
+          //         child: Flags(
+          //           flag: awayFlag,
+          //         ),
+          //       )
+          //     : const CircularProgressIndicator(),
         ],
       ),
     );

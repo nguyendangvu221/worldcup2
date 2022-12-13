@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:world_cup/src/views/worldcup_view/countries.dart';
 
 class Match extends StatelessWidget {
+  final String finished;
   final String group;
+  final DateFormat dateFormat;
   final DateTime dateTime;
   final String homeTeamEn;
   final String awayTeamEn;
@@ -10,8 +13,12 @@ class Match extends StatelessWidget {
   final int awayScore;
   final String homeFlag;
   final String awayFlag;
+  final Function() onPressed;
   const Match(
       {super.key,
+      required this.finished,
+      required this.onPressed,
+      required this.dateFormat,
       required this.group,
       required this.dateTime,
       required this.homeTeamEn,
@@ -23,45 +30,54 @@ class Match extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                margin: const EdgeInsets.only(left: 10),
-                child: Text(
-                  group,
-                  style: const TextStyle(
-                    fontSize: 20,
+    return TextButton(
+      style: TextButton.styleFrom(
+          minimumSize: const Size(400, 50), maximumSize: const Size(400, 106)),
+      onPressed: onPressed,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 7),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    group,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Text(
-                dateTime.toString(),
-                style: const TextStyle(
-                  fontSize: 20,
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    dateFormat.format(dateTime),
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-        Container(
-            margin: const EdgeInsets.only(top: 15, bottom: 15),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 7),
             child: Countries(
+              finished: finished,
               awayFlag: awayFlag,
               awayScorers: awayScore,
               awayTeamEn: awayTeamEn,
               homeFlag: homeFlag,
               homeScorers: homeScore,
               homeTeamEn: homeTeamEn,
-            )),
-        const Divider(color: Color.fromARGB(255, 216, 216, 216), thickness: 2),
-      ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
