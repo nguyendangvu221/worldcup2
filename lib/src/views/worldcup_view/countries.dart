@@ -69,19 +69,18 @@ class Countries extends StatelessWidget {
                         ),
                       ),
                     )
-                  : const Expanded(
+                  : Expanded(
                       flex: 1,
                       child: Center(
-                        child: Image(
-                            image: AssetImage(
-                              "asset/bell.png",
-                            ),
-                            width: 30),
-                        // style: TextStyle(
-                        //   fontSize: 17,
-                        //   fontWeight: FontWeight.bold,
-                        // ),
+                        child: Image.asset(
+                          "asset/bell.png",
+                          width: 30,
+                        ),
                       ),
+                      // style: TextStyle(
+                      //   fontSize: 17,
+                      //   fontWeight: FontWeight.bold,
+                      // ),
                     )
               : const CircularProgressIndicator(),
           awayTeamEn != null

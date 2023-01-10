@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:world_cup/main.dart';
 import 'package:world_cup/src/models/matches.dart';
+import 'package:world_cup/src/views/match_view/contries_match.dart';
 import 'package:world_cup/src/views/worldcup_view/appbar_match.dart';
 import 'package:world_cup/src/views/worldcup_view/drawer_match.dart';
 import 'package:world_cup/src/views/worldcup_view/match.dart';
@@ -20,7 +22,6 @@ class MyApp extends StatelessWidget {
           preferredSize: Size.fromHeight(55),
           child: AppBarMatch(),
         ),
-        // body: WorldCupScreen(),
         body: FutureBuilder<List<Matches>>(
             future: matches,
             builder: (context, snapshot) {

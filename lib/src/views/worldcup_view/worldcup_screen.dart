@@ -1,4 +1,5 @@
 import 'package:world_cup/src/models/matches.dart';
+import 'package:world_cup/src/views/match_view/contries_match.dart';
 import 'package:world_cup/src/views/worldcup_view/match.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,22 @@ class WorldCupScreen extends StatelessWidget {
         height: 1,
       ),
       itemBuilder: (context, index) => Match(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CountriesMatch(
+                      homeScorers: matches[index].homeScore,
+                      awayScorers: matches[index].awayScore,
+                      homeFlag: matches[index].homeFlag,
+                      homeTeamEn: matches[index].homeTeamEn,
+                      awayFlag: matches[index].awayFlag,
+                      awayTeamEn: matches[index].awayTeamEn,
+                      group: matches[index].group,
+                      dateFormat: matches[index].formatDate,
+                      dateTime: matches[index].localDate),
+                ));
+          },
           finished: matches[index].finished,
           group: "Group ${matches[index].group}",
           dateFormat: matches[index].formatDate,

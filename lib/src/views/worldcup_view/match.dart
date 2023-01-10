@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:world_cup/src/views/worldcup_view/countries.dart';
+import 'package:world_cup/src/views/worldcup_view/group_and_date_wcview.dart';
 
 class Match extends StatelessWidget {
   final String finished;
@@ -38,32 +39,9 @@ class Match extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            margin: const EdgeInsets.only(bottom: 7),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    group,
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    dateFormat.format(dateTime),
-                    style: const TextStyle(
-                      fontSize: 17,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+              margin: const EdgeInsets.only(bottom: 7),
+              child: GroupAndDate(
+                  dateTime: dateTime, group: group, dateFormat: dateFormat)),
           Container(
             margin: const EdgeInsets.only(bottom: 7),
             child: Countries(
