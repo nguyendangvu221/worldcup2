@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:world_cup/src/views/worldcup_view/flag.dart';
 
 class CountriesMatch extends StatelessWidget {
   final int homeScorers;
@@ -42,77 +43,112 @@ class CountriesMatch extends StatelessWidget {
             flex: 1,
             child: Container(
               margin: const EdgeInsets.only(top: 20),
-              child: Column(
-                children: [
-                  Container(
-                      margin: const EdgeInsets.only(top: 35, right: 380),
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            size: 30,
-                          ))),
-                  Text(
-                    "$group, " "${dateFormat.format(dateTime)}",
-                    style: const TextStyle(fontSize: 18),
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "asset/hinh-nen-bong-da.jpg",
+                    ),
+                    fit: BoxFit.fill,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: Image.network(
-                            homeFlag,
-                            width: 30,
-                            height: 50,
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Center(
-                            child: Text(
-                              "$homeScorers-$awayScorers",
-                              style: const TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.w700),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.only(top: 35, right: 380),
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.white,
+                              size: 30,
+                            ))),
+                    Text(
+                      "$group, " "${dateFormat.format(dateTime)}",
+                      style: const TextStyle(fontSize: 17, color: Colors.white),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              flex: 3,
+                              child: Column(
+                                children: [
+                                  Flags(
+                                    flag: homeFlag,
+                                    height: 70,
+                                    width: 70,
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      homeTeamEn,
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  )
+                                ],
+                              )),
+                          Expanded(
+                            flex: 2,
+                            child: Center(
+                              child: Text(
+                                "$homeScorers - $awayScorers",
+                                style: const TextStyle(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Image.network(
-                            awayFlag,
-                            height: 50,
-                            width: 30,
-                          ),
-                        ),
-                      ],
+                          Expanded(
+                              flex: 3,
+                              child: Column(
+                                children: [
+                                  Flags(
+                                    flag: awayFlag,
+                                    height: 70,
+                                    width: 70,
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      awayTeamEn,
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  )
+                                ],
+                              )),
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 20, left: 40),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            flex: 4,
-                            child: Text(
-                              homeTeamEn,
-                              style: const TextStyle(
-                                  fontSize: 25, color: Colors.black),
-                            )),
-                        Expanded(
-                            flex: 2,
-                            child: Text(
-                              awayTeamEn,
-                              style: const TextStyle(
-                                  fontSize: 25, color: Colors.black),
-                            ))
-                      ],
-                    ),
-                  ),
-                ],
+                    // Container(
+                    //   margin: const EdgeInsets.only(top: 20, left: 50),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //           flex: 4,
+                    //           child: Text(
+                    //             homeTeamEn,
+                    //             style: const TextStyle(
+                    //                 fontSize: 20, color: Colors.white),
+                    //           )),
+                    //       Expanded(
+                    //           flex: 2,
+                    //           child: Text(
+                    //             awayTeamEn,
+                    //             style: const TextStyle(
+                    //                 fontSize: 20, color: Colors.white),
+                    //           ))
+                    //   ],
+                    // ),
+                    // ),
+                  ],
+                ),
               ),
             ),
           ),

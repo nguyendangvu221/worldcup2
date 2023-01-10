@@ -28,12 +28,15 @@ class Countries extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            // child: Container(
             child: homeFlag != null
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Flags(flag: homeFlag),
+                      Flags(
+                        flag: homeFlag,
+                        height: 50,
+                        width: 50,
+                      ),
                       Container(
                         margin: const EdgeInsets.only(left: 15),
                         child: Text(
@@ -45,16 +48,7 @@ class Countries extends StatelessWidget {
                     ],
                   )
                 : const CircularProgressIndicator(),
-            // ),
           ),
-          // homeFlag != null
-          //     ? Expanded(
-          //         child: Text(
-          //           homeTeamEn,
-          //           style: const TextStyle(fontSize: 17, color: Colors.red),
-          //         ),
-          //       )
-          //     : const CircularProgressIndicator(),
           (homeScorers != null && awayScorers != null)
               ? finished == "TRUE"
                   ? Expanded(
@@ -77,10 +71,6 @@ class Countries extends StatelessWidget {
                           width: 30,
                         ),
                       ),
-                      // style: TextStyle(
-                      //   fontSize: 17,
-                      //   fontWeight: FontWeight.bold,
-                      // ),
                     )
               : const CircularProgressIndicator(),
           awayTeamEn != null
@@ -99,19 +89,14 @@ class Countries extends StatelessWidget {
                         ),
                       ),
                       Flags(
+                        height: 50,
+                        width: 50,
                         flag: awayFlag,
                       ),
                     ],
                   ),
                 )
               : const CircularProgressIndicator(),
-          // awayFlag != null
-          //     ? Expanded(
-          //         child: Flags(
-          //           flag: awayFlag,
-          //         ),
-          //       )
-          //     : const CircularProgressIndicator(),
         ],
       ),
     );
