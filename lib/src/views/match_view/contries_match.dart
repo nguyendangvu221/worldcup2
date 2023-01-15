@@ -155,7 +155,7 @@ class CountriesMatch extends StatelessWidget {
           Expanded(
               flex: 2,
               child: Column(
-                children: [Text("expanded 2")],
+                children: [Text("expanded 2")]
               ))
         ],
       ),
