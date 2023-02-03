@@ -21,8 +21,10 @@ class WorldCupScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => CountriesMatch(
-                      homeScorers: matches[index].homeScore,
-                      awayScorers: matches[index].awayScore,
+                      homeScore: matches[index].homeScore,
+                      awayScore: matches[index].awayScore,
+                      homeScorers: matches[index].homeScorers,
+                      awayScorers: matches[index].awayScorers,
                       homeFlag: matches[index].homeFlag,
                       homeTeamEn: matches[index].homeTeamEn,
                       awayFlag: matches[index].awayFlag,
